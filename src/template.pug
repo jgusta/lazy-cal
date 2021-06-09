@@ -1,0 +1,49 @@
+- var currDay = 1;
+- var dayOfWeek = 1;
+- var weekEnd = false;
+- var started = false,
+header.cal
+  h1 
+    | #{monthName}
+  h2
+    | #{year}
+table.calendar
+  thead
+    tr 
+      each dayName in daysOfWeek
+        th.dayHead 
+          | #{dayName}
+  each monthWeek in [1,2,3,4,5]
+    tr.week
+      each dayOfWeekNumber in [1,2,3,4,5,6,7]
+        - weekEnd = dayOfWeekNumber > 5;
+        // The area before calendar starts
+
+        if started == false
+          if firstDay == 1
+            started = true
+
+        if started == false
+          // last inactive day?
+          if dayOfWeekNumber == firstDay - 1
+            // if it is and it is monday, then it is first and last
+            if dayOfWeekNumber == 1
+              td.day.inactive.first.last
+            else
+              td.day.inactive.last(class={ weekEnd: !!weekEnd })
+          else if dayOfWeekNumber == 1
+            td.day.inactive.first
+          else if dayOfWeekNumber < firstDay
+            td.day.inactive(class={ weekEnd: !!weekEnd })
+
+        if dayOfWeekNumber == firstDay
+          - started = true;
+
+        if started == true
+          if currDay > lastDay
+            td.day.inactive(class={ weekEnd: !!weekEnd })
+          else
+            td.day.active(class={ weekEnd: !!weekEnd })
+              div.dayNumber
+                | #{currDay}
+          - currDay = currDay + 1;

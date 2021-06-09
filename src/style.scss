@@ -1,0 +1,99 @@
+@media print,screen
+ {
+    :root {
+        --inactive-border: #eee;
+        --active-border: #000;
+        --inactive-background: #ccc;
+        --week-end-background: #eee;
+        --cal-background: #ffffff;
+    }
+   html{
+     height:10in;
+   }
+    body {
+        background-color: val(--cal-background);
+      height: 100%;
+    }
+
+
+    header.cal {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+        h1,
+        h2 {
+          display:inline;
+  
+        }
+        h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        h2 {
+            font-size: 2em;
+            margin: 0;
+        }
+    }
+
+
+
+
+table.calendar {
+    width: 8in;
+    table-layout: fixed;
+    border-spacing: 0;
+    /* display: inline-table; */
+    margin: 1em;
+    border: solid 5px; 
+}
+    
+
+    table,
+    tr,
+    td {
+        border-collapse: collapse;
+    }
+
+    th.dayHead {
+        border-bottom: solid 2px var(--active-border);
+        width: calc(100% / 7);
+        height: 30px;
+    }
+
+    td.day {
+        width: calc(100% / 7);
+        height: 100px;
+        vertical-align: top;
+        border: solid 2px black;
+    }
+
+    td.day.active {}
+
+    td.day.inactive {
+
+        border-right: solid 2px var(--inactive-border);
+        border-left: solid 2px var(--inactive-border);
+        background-image: linear-gradient(45deg, var(--inactive-background) 6.52%, var(--cal-background) 6.52%, var(--cal-background) 50%, var(--inactive-background) 50%, var(--inactive-background) 56.52%, var(--cal-background) 56.52%, var(--cal-background) 100%);
+        background-size: 32.53px 32.53px;
+    }
+
+    td.day.inactive.first {
+        border-left: solid 2px var(--cal-background);
+    }
+
+    td.day.inactive.last {
+        border-right: solid 2px var(--active-border);
+    }
+
+    td.day.weekEnd {
+        background-image: linear-gradient(315deg, var(--week-end-background) 6.52%, var(--cal-background) 6.52%, var(--cal-background) 50%, var(--week-end-background) 50%, var(--week-end-background) 56.52%, var(--cal-background) 56.52%, var(--cal-background) 100%);
+        background-size: 32.53px 32.53px;
+    }
+
+    .dayNumber {
+        display: relative;
+        padding: 0.2em 0.3em;
+    }
+}
